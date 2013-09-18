@@ -13,3 +13,12 @@ exports.get = function (request) {
 	}).pop();
     request.reply(task);
 }
+
+exports.create = function (request) {
+	var task = {
+		id: tasks[tasks.length - 1].id + 1,
+		text: request.payload.text,
+		done: request.payload.done
+	};
+	request.reply(task).code(201);
+}
