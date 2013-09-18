@@ -3,20 +3,29 @@ var Hapi = require('hapi');
 // Create a server with a host and port
 var server = Hapi.createServer('localhost', 8000);
 
-// Define the route
-var tasksList = {
-  handler: function (request) {
+var tasks = [
+	{ id:1, text: 'do something', done: false },
+	{ id:2, text: 'go shopping', done: true}
+];
 
-    request.reply({ greeting: 'some tasks' });
-  }
-};
+function getTasks (request) {
+    request.reply(tasks);
+}
+
+function getTask (request) {
+    var task = tasks.filter(function (_task) {
+      return _task.id === parseInt(request.params.id);
+	}).pop();
+    request.reply(task);
+}
+
+var routes = [
+  { method: 'GET', path: '/task', config: { handler: getTasks } },
+  { method: 'GET', path: '/task/{id}', config: { handler: getTask } }
+];
 
 // Add the route
-server.route({
-  method: 'GET',
-  path: '/task',
-  config: tasksList
-});
+server.addRoutes(routes);
 
 // Start the server
 server.start();
