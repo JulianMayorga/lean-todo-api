@@ -47,6 +47,16 @@ describe('Lean todo api', function () {
 			});
 		});
 
+		it('PUT /task/{:id} updates a task', function (done) {
+
+			api.inject({method: 'POST', url: '/task/1', payload: '{"text":"study","done":true}'}, function (res) {
+				expect(res.result).to.exist;
+				expect(res.statusCode).to.equal(200);
+				expect(res.payload).to.equal('{"id":1,"text":"do something","done":true}');
+				done();
+			});
+		});
+
 
 	});
 });
