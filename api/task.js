@@ -20,5 +20,6 @@ exports.create = function (request) {
 		text: request.payload.text,
 		done: request.payload.done
 	};
+	tasks.push(task);
 	request.reply(task).code(201);
 }
