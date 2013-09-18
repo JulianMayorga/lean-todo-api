@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '0.10'
+deploy:
+  provider: heroku
+  api_key:
+    secure: CvZ+4X3dOAzkDhTpkRJTJIyZflh7nTOTJtcyiE1aXfiYTalwU0lSjQ2BTK1mt5COowLvbEJehmczhVVexAGO8QlYJ1aZNSsWOlJF9qlpITaqMvUq4bc/DAJytXUSG08CFDz4jr7Bu74GySDVijwKlGCBTEFT4Fq8A9nrarbYWME=
+  app: lean-todo-api
+  on:
+    repo: JulianMayorga/lean-todo-api
+    branch: travis-integration
