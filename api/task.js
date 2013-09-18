@@ -23,3 +23,19 @@ exports.create = function (request) {
 	tasks.push(task);
 	request.reply(task).code(201);
 }
+
+exports.update = function (request) {
+	var task;
+    tasks.forEach(function (element, index, array) {
+		if (element.id === parseInt(request.params.id)) {
+			if (request.payload.text) {
+				array[index].text = request.payload.text;
+			}
+			if (request.payload.done) {
+				array[index].done = request.payload.done;
+			}
+			task = array[index];
+		}
+	});
+    request.reply(task).code(200);
+}
