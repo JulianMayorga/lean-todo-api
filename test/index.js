@@ -37,7 +37,13 @@ describe('Lean todo api', function () {
 				expect(res.result).to.exist;
 				expect(res.statusCode).to.equal(201);
 				expect(res.payload).to.equal('{"id":3,"text":"study","done":false}');
-				done();
+				api.inject('/task', function (res) {
+					expect(res.payload).to.equal('[' +
+												 '{"id":1,"text":"do something","done":false}' +
+												 ',{"id":2,"text":"go shopping","done":true}' +
+												 ',{"id":3,"text":"study","done":false}]');
+					done();
+				});
 			});
 		});
 
