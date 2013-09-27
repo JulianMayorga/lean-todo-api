@@ -7,7 +7,7 @@ var port = process.env.PORT || 8000;
 // Pregunta: Que significa el + antes de process...?
 // Respuesta: El + antes de una variable retorna su representacion numerica
 // Referencia: http://stackoverflow.com/questions/6682997/javascript-plus-symbol-before-variable
-var server = new Hapi.Server(+port, '0.0.0.0');
+var server = new Hapi.Server(+port, '0.0.0.0', {cors: true});
 
 server.addRoutes(routes.endpoints);
 
