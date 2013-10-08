@@ -57,6 +57,23 @@ describe('Lean todo api', function () {
 			});
 		});
 
+		describe('DELETE', function () {
+			it('deletes a task when successful', function (done) {
 
+				api.inject({method: 'DELETE', url: '/task/1'}, function (res) {
+					expect(res.result).to.exist;
+					expect(res.statusCode).to.equal(204);
+					done();
+				});
+			});
+
+			it('returns 404 when resource doesnt exist', function (done) {
+				api.inject({method: 'DELETE', url: '/task/4'}, function (res) {
+					expect(res.result).to.exist;
+					expect(res.statusCode).to.equal(404);
+					done();
+				});
+			});
+		});
 	});
 });

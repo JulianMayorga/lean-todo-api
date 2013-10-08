@@ -37,5 +37,20 @@ exports.update = function (request) {
 			task = array[index];
 		}
 	});
+
     request.reply(task).code(200);
+}
+
+exports.remove = function (request) {
+	var removed = [];
+    tasks.forEach(function (element, index, array) {
+		if (element.id === parseInt(request.params.id)) {
+			removed = tasks.splice(tasks.indexOf(element), 1);
+		}
+	});
+	if( removed.length !== 0 ) {
+		request.reply().code(204);
+	} else {
+		request.reply().code(404);
+	}
 }
