@@ -27,7 +27,7 @@ exports.create = function (request) {
 exports.update = function (request) {
 	var task;
     tasks.forEach(function (element, index, array) {
-		if (element.id === parseInt(request.params.id)) {
+		if (element.id === parseInt(request.payload.id)) {
 			if (request.payload.text) {
 				array[index].text = request.payload.text;
 			}

@@ -47,9 +47,9 @@ describe('Lean todo api', function () {
 			});
 		});
 
-		it('PUT /task/{:id} updates a task', function (done) {
+		it('PUT /task updates a task', function (done) {
 
-			api.inject({method: 'PUT', url: '/task/1', payload: '{"done":true}'}, function (res) {
+			api.inject({method: 'PUT', url: '/task', payload: '{"id":1,"text":"do something","done":true}'}, function (res) {
 				expect(res.result).to.exist;
 				expect(res.statusCode).to.equal(200);
 				expect(res.payload).to.equal('{"id":1,"text":"do something","done":true}');
